@@ -1,19 +1,31 @@
 package br.com.meli.desafio_final.model.entity;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Setter @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Seller{
+public class Seller {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(unique = true, nullable = false)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(nullable = false)
+    @Size(min = 3, max = 55, message = "O 'username' deve possuir o mínimo de 3 caracteries e o maximo de 20.")
+    @NotEmpty(message = "O campo 'username' é obrigatório.")
     private String name;
 }

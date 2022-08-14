@@ -29,7 +29,6 @@ public class AdsenseController {
      * Nesse método retornamos uma lista de anúncios
      * @return
      */
-    // TODO: colocar DTO
     @GetMapping
     public ResponseEntity<List<AdsenseDto>> findAll() {
         return ResponseEntity.ok(AdsenseDto.convertDto(adsenseService.findAll()));
@@ -40,7 +39,6 @@ public class AdsenseController {
      * @param querytype
      * @return
      */
-    // TODO: colocar DTO
     @GetMapping("/list")
     public ResponseEntity<List<AdsenseDto>> findByCategory(@RequestParam Category querytype) {
         return ResponseEntity.ok(AdsenseDto.convertDto(adsenseService.findByCategory(querytype)));

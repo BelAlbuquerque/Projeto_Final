@@ -33,16 +33,16 @@ public class ProductControllerTest {
 
     // TODO: ADICIONAR @DisplayName() AOS TESTES QUE NÃO O POSSUI
 
-    @Test
-    public void testGetAllProducts() {
-        BDDMockito.when(productService.findAllProducts())
-                .thenReturn(ProductUtils.productList());
-
-        ResponseEntity<List<Product>> productResponse = productController.getAll();
-        assertThat(productResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(productResponse.getBody()).isNotNull();
-        assertThat(productResponse.getBody().size()).isNotNull().isPositive().isEqualTo(4);
-    }
+//    @Test
+//    public void testGetAllProducts() {
+//        BDDMockito.when(productService.findAllProducts())
+//                .thenReturn(ProductUtils.productList());
+//
+//        ResponseEntity<List<Product>> productResponse = productController.getAll();
+//        assertThat(productResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        assertThat(productResponse.getBody()).isNotNull();
+//        assertThat(productResponse.getBody().size()).isNotNull().isPositive().isEqualTo(4);
+//    }
 
     @Test
     public void testProductsByCategory() {

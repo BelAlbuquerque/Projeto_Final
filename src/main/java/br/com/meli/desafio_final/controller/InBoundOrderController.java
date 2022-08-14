@@ -24,7 +24,7 @@ public class InBoundOrderController {
      * @param inBoundOrder
      * @return
      */
-    // TODO: corrigir validaçao
+    // TODO: USER_ID
         @PostMapping("/{agentId}")
         public ResponseEntity<List<InBoundOrderDto>> createInBoundOrder(@PathVariable long agentId,@RequestBody InBoundOrder inBoundOrder) {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.create(inBoundOrder, agentId));
@@ -36,7 +36,8 @@ public class InBoundOrderController {
      * @param inBoundOrder
      * @return
      */
-        @PutMapping("/{agentId}")
+    // TODO: USER_ID
+    @PutMapping("/{agentId}")
         public ResponseEntity<List<InBoundOrderDto>> updateInBoundOrder(@PathVariable long agentId,@RequestBody InBoundOrder inBoundOrder) {
             return ResponseEntity.status(HttpStatus.OK).body(service.update(inBoundOrder, agentId));
         }

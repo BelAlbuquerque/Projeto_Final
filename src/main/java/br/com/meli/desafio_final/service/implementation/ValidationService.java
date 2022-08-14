@@ -23,9 +23,6 @@ public class ValidationService {
     ProductRepository productRepository;
 
     @Autowired
-    BatchRepository batchRepository;
-
-    @Autowired
     AgentRepository agentRepository;
 
     /**

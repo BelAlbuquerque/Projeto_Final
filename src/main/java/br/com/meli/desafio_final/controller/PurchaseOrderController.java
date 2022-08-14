@@ -44,7 +44,6 @@ public class PurchaseOrderController {
      * @param purchaseOrderId
      * @return
      */
-    //TODO: fazer DTO
     @PutMapping("/orders/")
     public ResponseEntity<PurchaseOrderDto> update(@RequestParam Long purchaseOrderId) {
         return ResponseEntity.status(HttpStatus.OK)
