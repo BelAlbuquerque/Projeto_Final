@@ -76,6 +76,7 @@ public class UserService {
         Buyer buyer = new Buyer();
         buyer.setId(user.getId());
         buyer.setName(user.getName());
+        buyerRepository.save(buyer);
     }
 
     @Transactional
