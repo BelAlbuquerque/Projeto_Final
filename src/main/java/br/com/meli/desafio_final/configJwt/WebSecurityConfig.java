@@ -1,6 +1,7 @@
 package br.com.meli.desafio_final.configJwt;
 
 import br.com.meli.desafio_final.repository.UserRepository;
+import br.com.meli.desafio_final.service.implementation.AutenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,53 +12,45 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private AuthenticationService service;
+    private AutenticationService autenticationService;
 
-    @Autowired UserRepository userRepository;
+    @Autowired
+    private TokenService tokenService;
 
+    @Autowired
+    private UserRepository repository;
+
+    //autenticacao
     @Override
     @Bean
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
+    //autorizacao
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/api/v2/adsenses").permitAll()
+        http.authorizeRequests()
+                //.antMatchers("/api/v2/adsenses").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/registry").permitAll()
-                .antMatchers(HttpMethod.GET, "api/v2/fresh-products").hasAnyRole("AGENT")
+                .antMatchers(HttpMethod.GET, "/api/v2/fresh-products").hasAnyAuthority("AGENT")
                 .anyRequest().authenticated()
-                .and()
-                .addFilter(new AuthenticationFilter(authenticationManager()))
-                .addFilter(new ValidationFilter(authenticationManager(), userRepository))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new AutenticationFilter(tokenService, repository), UsernamePasswordAuthenticationFilter.class);
     }
-
+    //autenticacao
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        auth.userDetailsService(service).passwordEncoder(encoder);
-    }
-
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
+        auth.userDetailsService(autenticationService).passwordEncoder(encoder);
     }
 }
