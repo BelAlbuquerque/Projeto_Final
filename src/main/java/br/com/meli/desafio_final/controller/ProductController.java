@@ -23,10 +23,8 @@ public class ProductController {
      * Nesse método retornamos uma lista com todos os produtos
      * @return
      */
-    // TODO: USER_ID - remover
     @GetMapping
-    public ResponseEntity<List<Product>> findAll(HttpServletRequest teste) {
-        System.out.println(teste.getAttribute("userId"));
+    public ResponseEntity<List<Product>> findAll() {
         return ResponseEntity.ok(service.findAllProducts());
     }
 
