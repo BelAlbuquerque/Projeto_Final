@@ -9,9 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Getter
-public class UserDto extends User {
+public class UserDto {
+    private String name;
+    private String email;
+    private String role;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "warehouse_id")
-    private Warehouse warehouse;
+    public UserDto(User user) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.role = user.getRole();
+    }
 }

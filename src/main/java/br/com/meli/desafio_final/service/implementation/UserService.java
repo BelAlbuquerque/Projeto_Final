@@ -1,5 +1,7 @@
 package br.com.meli.desafio_final.service.implementation;
 
+import br.com.meli.desafio_final.configJwt.TokenService;
+import br.com.meli.desafio_final.dto.TokenDto;
 import br.com.meli.desafio_final.dto.UserDto;
 import br.com.meli.desafio_final.exception.BadRequest;
 import br.com.meli.desafio_final.model.entity.Agent;
@@ -10,14 +12,25 @@ import br.com.meli.desafio_final.repository.AgentRepository;
 import br.com.meli.desafio_final.repository.BuyerRepository;
 import br.com.meli.desafio_final.repository.SellerRepository;
 import br.com.meli.desafio_final.repository.UserRepository;
+import br.com.meli.desafio_final.request.LoginRequest;
+import br.com.meli.desafio_final.request.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.beans.Transient;
+
 
 @Service
 public class UserService {
+
+    @Autowired
+    private AuthenticationManager manager;
+
+    @Autowired
+    private TokenService tokenService;
 
     @Autowired
     UserRepository userRepository;
@@ -34,7 +47,7 @@ public class UserService {
     @Autowired
     WarehouseService warehouseService;
 
-    private User saveUser(UserDto user) {
+    private User saveUser(UserRequest user) {
         User newUser = new User();
         newUser.setPassword(user.getPassword());
         newUser.setName(user.getName());
@@ -43,7 +56,7 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    private void saveAgent(UserDto user, Long agentId) {
+    private void saveAgent(UserRequest user, Long agentId) {
         warehouseService.findWarehouse(user.getWarehouse().getId()).orElseThrow(() -> { throw new BadRequest("Armazem não existe em nosso banco de dados");});
         Agent agent = new Agent();
         agent.setId(agentId);
@@ -66,7 +79,7 @@ public class UserService {
     }
 
     @Transactional
-    public User save(UserDto user) {
+    public UserDto saveNewUser(UserRequest user) {
         User newUser = null;
         if (user.getRole().equalsIgnoreCase("Agent")) {
             if(user.getWarehouse() == null) throw new BadRequest("Para cadastrar um representante, é necessário informar o id do armazem.");
@@ -82,6 +95,13 @@ public class UserService {
             saveBuyer(newUser);
         }
         if(newUser == null) throw new BadRequest("Campos inválidos.");
-        return newUser;
+        return new UserDto(newUser);
+    }
+
+    public TokenDto userLogin (LoginRequest loginRequest) {
+        UsernamePasswordAuthenticationToken loginData = loginRequest.convert();
+        Authentication authentication = manager.authenticate(loginData);
+        String token = tokenService.generateToken(authentication);
+        return new TokenDto(token, "Bearer");
     }
 }

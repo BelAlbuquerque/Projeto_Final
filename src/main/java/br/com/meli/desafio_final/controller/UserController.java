@@ -5,6 +5,7 @@ import br.com.meli.desafio_final.dto.TokenDto;
 import br.com.meli.desafio_final.dto.UserDto;
 import br.com.meli.desafio_final.model.entity.User;
 import br.com.meli.desafio_final.request.LoginRequest;
+import br.com.meli.desafio_final.request.UserRequest;
 import br.com.meli.desafio_final.service.implementation.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,28 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private AuthenticationManager manager;
-    @Autowired
-    private TokenService tokenService;
-
-
-    @Autowired
     private UserService userService;
+
 
     @Autowired
     private PasswordEncoder encoder;
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> authenticate(@RequestBody LoginRequest loginRequest) {
-        UsernamePasswordAuthenticationToken loginData = loginRequest.convert();
-        Authentication authentication = manager.authenticate(loginData);
-        String token = tokenService.generateToken(authentication);
-        return ResponseEntity.ok(new TokenDto(token, "Bearer"));
+    public ResponseEntity<TokenDto> userLogin(@RequestBody LoginRequest loginRequest) {
+         return ResponseEntity.ok(userService.userLogin(loginRequest));
     }
 
     @PostMapping("/user/registry")
-    public ResponseEntity<User> saveNewUser(@RequestBody UserDto user) {
+    public ResponseEntity<UserDto> saveNewUser(@RequestBody UserRequest user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        return ResponseEntity.ok(userService.save(user));
+        return ResponseEntity.ok(userService.saveNewUser(user));
     }
 }
