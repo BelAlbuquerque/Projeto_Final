@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -20,25 +21,24 @@ public class InBoundOrderController {
 
     /**
      * Nesse método estamos criando (inserindo um produto) na classe InBoundOrder
-     * @param agentId
      * @param inBoundOrder
      * @return
      */
-    // TODO: USER_ID
-        @PostMapping("/{agentId}")
-        public ResponseEntity<List<InBoundOrderDto>> saveInBoundOrder(@PathVariable long agentId,@RequestBody InBoundOrder inBoundOrder) {
+        @PostMapping("/")
+        public ResponseEntity<List<InBoundOrderDto>> saveInBoundOrder(HttpServletRequest request, @RequestBody InBoundOrder inBoundOrder) {
+            Long agentId = (Long) request.getAttribute("userId");
             return ResponseEntity.status(HttpStatus.CREATED).body(service.create(inBoundOrder, agentId));
         }
 
     /**
      * Nesse método estamos atualizando produto / inBoundOrder
-     * @param agentId
      * @param inBoundOrder
      * @return
      */
     // TODO: USER_ID
     @PutMapping("/{agentId}")
-        public ResponseEntity<List<InBoundOrderDto>> updateInBoundOrder(@PathVariable long agentId,@RequestBody InBoundOrder inBoundOrder) {
+        public ResponseEntity<List<InBoundOrderDto>> updateInBoundOrder(HttpServletRequest request, @RequestBody InBoundOrder inBoundOrder) {
+        Long agentId = (Long) request.getAttribute("userId");
             return ResponseEntity.status(HttpStatus.OK).body(service.update(inBoundOrder, agentId));
         }
 

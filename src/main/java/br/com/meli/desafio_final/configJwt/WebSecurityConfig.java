@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/api/v2/adsenses").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/registry").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v2/fresh-products").hasAnyAuthority("AGENT")
+                .antMatchers(HttpMethod.GET, "/api/v1/fresh-products/inboundorder/").hasAnyAuthority("AGENT")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
