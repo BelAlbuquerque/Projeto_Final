@@ -4,14 +4,11 @@ import br.com.meli.desafio_final.dto.BatchesByProductDto;
 import br.com.meli.desafio_final.model.entity.Product;
 import br.com.meli.desafio_final.model.enums.Category;
 import br.com.meli.desafio_final.service.implementation.ProductService;
-import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpHeaders;
 import java.util.List;
 
 @RestController
@@ -28,7 +25,7 @@ public class ProductController {
      */
     // TODO: USER_ID - remover
     @GetMapping
-    public ResponseEntity<List<Product>> getAll(HttpServletRequest teste) {
+    public ResponseEntity<List<Product>> findAll(HttpServletRequest teste) {
         System.out.println(teste.getAttribute("userId"));
         return ResponseEntity.ok(service.findAllProducts());
     }
@@ -40,7 +37,7 @@ public class ProductController {
      */
 
     @GetMapping("/list")
-    public ResponseEntity<List<Product>> getByCategory(@RequestParam Category querytype) {
+    public ResponseEntity<List<Product>> findByCategory(@RequestParam Category querytype) {
         return ResponseEntity.ok(service.findByCategory(querytype));
     }
 

@@ -26,7 +26,7 @@ public class InBoundOrderController {
      */
     // TODO: USER_ID
         @PostMapping("/{agentId}")
-        public ResponseEntity<List<InBoundOrderDto>> createInBoundOrder(@PathVariable long agentId,@RequestBody InBoundOrder inBoundOrder) {
+        public ResponseEntity<List<InBoundOrderDto>> saveInBoundOrder(@PathVariable long agentId,@RequestBody InBoundOrder inBoundOrder) {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.create(inBoundOrder, agentId));
         }
 

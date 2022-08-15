@@ -38,7 +38,7 @@ public class PurchaseOrderControllerTest {
         BDDMockito.when(purchaseOrderService.save(PurchaseOrderUtils.newPurchase1ToSave()))
                 .thenReturn(555D);
 
-        ResponseEntity<Double> purchaseOrderResponse = purchaseOrderController.save(PurchaseOrderUtils.newPurchase1ToSave());
+        ResponseEntity<Double> purchaseOrderResponse = purchaseOrderController.savePurchaseOrder(PurchaseOrderUtils.newPurchase1ToSave());
 
         Assertions.assertThat(purchaseOrderResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
@@ -65,7 +65,7 @@ public class PurchaseOrderControllerTest {
         BDDMockito.when(purchaseOrderService.updateToFinished(purchaseOrderFinish.getId()))
                 .thenReturn(purchaseOrderFinish);
 
-        ResponseEntity<PurchaseOrderDto> purchaseOrderResponse = purchaseOrderController.update(purchaseOrderFinish.getId());
+        ResponseEntity<PurchaseOrderDto> purchaseOrderResponse = purchaseOrderController.updatePurchaseOrder(purchaseOrderFinish.getId());
 
         Assertions.assertThat(purchaseOrderResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions.assertThat(purchaseOrderResponse.getBody().getStatus()).isEqualTo(Status.FINISHED);

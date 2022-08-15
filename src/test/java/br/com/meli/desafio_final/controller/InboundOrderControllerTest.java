@@ -39,7 +39,7 @@ public class InboundOrderControllerTest {
                 ArgumentMatchers.any(InBoundOrder.class), ArgumentMatchers.any(Long.class)))
                 .thenReturn(InboundOrderDtoUtils.inBoundOrderDtoList());
 
-        ResponseEntity<List<InBoundOrderDto>> inboundOrderResponse = inBoundOrderController.createInBoundOrder(1L, InboundOrderUtils.newInboundOrder());
+        ResponseEntity<List<InBoundOrderDto>> inboundOrderResponse = inBoundOrderController.saveInBoundOrder(1L, InboundOrderUtils.newInboundOrder());
 
         Assertions.assertThat(inboundOrderResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }

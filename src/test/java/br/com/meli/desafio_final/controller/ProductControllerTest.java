@@ -49,7 +49,7 @@ public class ProductControllerTest {
         BDDMockito.when(productService.findByCategory(Category.FRESH))
                 .thenReturn(ProductUtils.productListFresh());
 
-        ResponseEntity<List<Product>> productResponse = productController.getByCategory(Category.FRESH);
+        ResponseEntity<List<Product>> productResponse = productController.findByCategory(Category.FRESH);
         assertThat(productResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(productResponse.getBody()).isNotNull();
         assertThat(productResponse.getBody().size()).isNotNull().isPositive().isEqualTo(2);
