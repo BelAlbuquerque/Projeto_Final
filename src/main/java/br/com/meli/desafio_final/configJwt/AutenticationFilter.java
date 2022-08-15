@@ -32,17 +32,17 @@ public class AutenticationFilter extends OncePerRequestFilter {
         if(tokenService.isValidToken(token)) {
 
             //autenticar o token
-            makeAuthentication(token);
+            makeAuthentication(token, request);
         }
         filterChain.doFilter(request, response);
     }
 
-    private void makeAuthentication(String token) {
+    private void makeAuthentication(String token, HttpServletRequest request) {
         String userEmail = tokenService.getUserEmail(token);
         User user = this.repository.findByEmail(userEmail);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication); //forçando autenticacao pelo spring
-        System.out.println("---->" + user.getAuthorities().toString());
+        request.setAttribute("userId" , user.getId());
     }
 
     private String getToken(HttpServletRequest request) {
