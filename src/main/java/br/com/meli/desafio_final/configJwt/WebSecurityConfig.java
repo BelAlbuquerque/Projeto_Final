@@ -40,6 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/registry").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/sellers").hasAnyAuthority("BUYER")
+                .antMatchers(HttpMethod.GET, "/user/buyers").hasAnyAuthority("SELLER")
                 .antMatchers(HttpMethod.GET, "/api/v2/adsenses").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v2/adsenses/list").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v2/adsenses/warehouse/{adsenseId}").permitAll()
