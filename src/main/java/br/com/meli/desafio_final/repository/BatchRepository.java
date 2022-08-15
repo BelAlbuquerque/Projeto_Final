@@ -1,5 +1,8 @@
 package br.com.meli.desafio_final.repository;
 
+import br.com.meli.desafio_final.dto.AdsensByDueDateAndCategoryDto;
+import br.com.meli.desafio_final.dto.AdsenseBySectionAndDueDateDto;
+import br.com.meli.desafio_final.dto.AdsenseByWarehouseDto;
 import br.com.meli.desafio_final.model.entity.Batch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -35,7 +38,7 @@ public interface BatchRepository extends JpaRepository<Batch, Long> {
             "AND batch.in_bound_order_id = inbound.id \n" +
             "AND inbound.section_id = section.id\n" +
             "GROUP BY warehouse_id, adsense_id;", nativeQuery = true)
-    List<Object[]> getAdsenseByWarehouse(long id);
+    List<AdsenseByWarehouseDto> getAdsenseByWarehouse(long id);
 
     /**
      * Essa query retorna uma lista de todos os lotes armazenados em um setor de um armazém,
@@ -54,7 +57,7 @@ public interface BatchRepository extends JpaRepository<Batch, Long> {
             " AND frescos.in_bound_order.section_id = ?1\n" +
             " AND due_date BETWEEN ?2 AND ?3" +
             " ORDER BY due_date", nativeQuery = true)
-    List<Object[]> getAdsenseBySectionAndDate(long id, LocalDate initialDate, LocalDate finalDate);
+    List<AdsenseBySectionAndDueDateDto> getAdsenseBySectionAndDate(long id, LocalDate initialDate, LocalDate finalDate);
 
 
     /**
@@ -83,7 +86,7 @@ public interface BatchRepository extends JpaRepository<Batch, Long> {
             " AND product.id = adsense.product_id\n" +
             " AND product.category = ?3\n" +
             " ORDER BY current_quantity ASC", nativeQuery = true)
-    List<Object[]> getAdsenseByDueDateAndCategoryAsc(LocalDate initialDate, LocalDate finalDate, String category);
+    List<AdsensByDueDateAndCategoryDto> getAdsenseByDueDateAndCategoryAsc(LocalDate initialDate, LocalDate finalDate, String category);
 
     /**
      * Essa query retorna uma lista de lote dentro do prazo de validade solicitado,
@@ -111,5 +114,5 @@ public interface BatchRepository extends JpaRepository<Batch, Long> {
             " AND product.id = adsense.product_id\n" +
             " AND product.category = ?3\n" +
             " ORDER BY current_quantity DESC", nativeQuery = true)
-    List<Object[]> getAdsenseByDueDateAndCategoryDesc(LocalDate initialDate, LocalDate finalDate, String category);
+    List<AdsensByDueDateAndCategoryDto> getAdsenseByDueDateAndCategoryDesc(LocalDate initialDate, LocalDate finalDate, String category);
 }

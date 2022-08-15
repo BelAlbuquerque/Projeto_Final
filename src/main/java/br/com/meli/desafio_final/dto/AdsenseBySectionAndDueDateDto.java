@@ -4,20 +4,10 @@ import lombok.*;
 import java.math.BigInteger;
 import java.util.Date;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class AdsenseBySectionAndDueDateDto {
-    BigInteger batchNumber;
-    BigInteger adsenseId;
-    Integer quantity;
-    Date dueDate;
+public interface AdsenseBySectionAndDueDateDto {
+    Long getBatch_number();
+    Long getAdsense_id();
+    Integer getQuantity();
+    Date getDue_date();
 
-    public AdsenseBySectionAndDueDateDto(Object batchNumber, Object adsenseId, Object quantity, Object dueDate) {
-        this.batchNumber = (BigInteger) batchNumber;
-        this.adsenseId = (BigInteger) adsenseId;
-        this.quantity = (Integer) quantity;
-        this.dueDate = (Date) dueDate;
-    }
 }
