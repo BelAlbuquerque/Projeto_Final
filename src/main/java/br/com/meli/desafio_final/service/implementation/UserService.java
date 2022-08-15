@@ -1,6 +1,8 @@
 package br.com.meli.desafio_final.service.implementation;
 
 import br.com.meli.desafio_final.configJwt.TokenService;
+import br.com.meli.desafio_final.dto.AllBuyersBySellerDto;
+import br.com.meli.desafio_final.dto.AllSellersByBuyerDto;
 import br.com.meli.desafio_final.dto.TokenDto;
 import br.com.meli.desafio_final.dto.UserDto;
 import br.com.meli.desafio_final.exception.BadRequest;
@@ -21,6 +23,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
@@ -104,5 +107,13 @@ public class UserService {
         Authentication authentication = manager.authenticate(loginData);
         String token = tokenService.generateToken(authentication);
         return new TokenDto(token, "Bearer");
+    }
+
+    public List<AllSellersByBuyerDto> findAllSellersByBuyer(Long buyerId) {
+        return userRepository.findAllSellesByBuyer(buyerId);
+    }
+
+    public List<AllBuyersBySellerDto> findAllBuyersBySeller(Long sellerId) {
+        return userRepository.findAllBuyersBySeller(sellerId);
     }
 }
