@@ -1,6 +1,6 @@
 package br.com.meli.desafio_final.service.implementation;
 import br.com.meli.desafio_final.dto.BatchDto;
-import br.com.meli.desafio_final.dto.AdsensByDueDateAndCategoryDto;
+import br.com.meli.desafio_final.dto.AdsenseByDueDateAndCategoryDto;
 import br.com.meli.desafio_final.dto.AdsenseBySectionAndDueDateDto;
 import br.com.meli.desafio_final.dto.AdsenseByWarehouseDto;
 import br.com.meli.desafio_final.model.entity.Batch;
@@ -94,7 +94,7 @@ public class BatchServiceTeste {
     public void testAdsenseByWarehouseAndQuantity() {
         long adsenseId = AdsenseUtils.newAdsense1ToSave().getId();
         BDDMockito.when(batchRepository.getAdsenseByWarehouse(adsenseId))
-                .thenReturn(AdsenseByWarehouseDtoUtils.AdsenseByWarehouseDtoList());
+                .thenReturn(AdsenseByWarehouseDtoUtils.AdsenseByWarehouseDtoListDto());
 
         List<AdsenseByWarehouseDto> saveBatchResponse = batchService.getAdsenseByWarehouseAndQuantity(adsenseId);
 
@@ -131,7 +131,7 @@ public class BatchServiceTeste {
         BDDMockito.when(batchRepository.getAdsenseByDueDateAndCategoryAsc(initialDate, finalDate, category))
             .thenReturn(AdsenseByDueDateAndCategoryDtoUtils.AdsensByDueDateAndCategoryListObjectAsc());
 
-        List<AdsensByDueDateAndCategoryDto> adsDueDateCategoryDtoListAsc = batchService.findAdsenseByDueDateAndCategory(numberOfDays, category, orderAsc);
+        List<AdsenseByDueDateAndCategoryDto> adsDueDateCategoryDtoListAsc = batchService.findAdsenseByDueDateAndCategory(numberOfDays, category, orderAsc);
 
         assertThat(adsDueDateCategoryDtoListAsc).isNotNull();
 
@@ -139,7 +139,7 @@ public class BatchServiceTeste {
         BDDMockito.when(batchRepository.getAdsenseByDueDateAndCategoryDesc(initialDate, finalDate, category))
             .thenReturn(AdsenseByDueDateAndCategoryDtoUtils.AdsensByDueDateAndCategoryListObjectDesc());
 
-        List<AdsensByDueDateAndCategoryDto> adsDueDateCategoryDtoListDesc = batchService.findAdsenseByDueDateAndCategory(numberOfDays, category, orderDesc);
+        List<AdsenseByDueDateAndCategoryDto> adsDueDateCategoryDtoListDesc = batchService.findAdsenseByDueDateAndCategory(numberOfDays, category, orderDesc);
 
         assertThat(adsDueDateCategoryDtoListDesc).isNotNull();
     }

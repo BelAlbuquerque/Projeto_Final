@@ -3,6 +3,7 @@ package br.com.meli.desafio_final.controller;
 import br.com.meli.desafio_final.dto.InBoundOrderDto;
 import br.com.meli.desafio_final.model.entity.InBoundOrder;
 import br.com.meli.desafio_final.service.implementation.InBoundOrderService;
+import br.com.meli.desafio_final.util.HttpRequestFake;
 import br.com.meli.desafio_final.util.InboundOrderDtoUtils;
 import br.com.meli.desafio_final.util.InboundOrderUtils;
 import org.assertj.core.api.Assertions;
@@ -34,25 +35,28 @@ public class InboundOrderControllerTest {
     // TODO: ADICIONAR @DisplayName() AOS TESTES QUE NÃO O POSSUI
     // TODO: MUDAR PARA IMPORT ESTÁTICO DO ArgumentsMatchers PARA MELHORARAR A LEITURA E IDENTAÇÃO
 
-//    @Test
-//    public void testCreateInboundOrder() {
-//        BDDMockito.when(inBoundOrderService.create(
-//                ArgumentMatchers.any(InBoundOrder.class), ArgumentMatchers.any(Long.class)))
-//                .thenReturn(InboundOrderDtoUtils.inBoundOrderDtoList());
-//
-//        ResponseEntity<List<InBoundOrderDto>> inboundOrderResponse = inBoundOrderController.saveInBoundOrder(HttpServletRequest., InboundOrderUtils.newInboundOrder());
-//
-//        Assertions.assertThat(inboundOrderResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-//    }
+    @Test
+    public void testCreateInboundOrder() {
+        HttpServletRequest request = new HttpRequestFake();
+        BDDMockito.when(inBoundOrderService.create(
+                ArgumentMatchers.any(InBoundOrder.class), ArgumentMatchers.any(Long.class)))
+                .thenReturn(InboundOrderDtoUtils.inBoundOrderDtoList());
 
-//    @Test
-//    public void testUpdateInboundOrder() {
-//        BDDMockito.when(inBoundOrderService.update(
-//                ArgumentMatchers.any(InBoundOrder.class), ArgumentMatchers.any(Long.class)))
-//                .thenReturn(InboundOrderDtoUtils.inBoundOrderDtoList());
-//
-//        ResponseEntity<List<InBoundOrderDto>> inboundOrderResponse = inBoundOrderController.updateInBoundOrder(1L, InboundOrderUtils.newInboundOrder());
-//
-//        Assertions.assertThat(inboundOrderResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-//    }
+        ResponseEntity<List<InBoundOrderDto>> inboundOrderResponse = inBoundOrderController.saveInBoundOrder(request, InboundOrderUtils.newInboundOrder());
+
+        Assertions.assertThat(inboundOrderResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    }
+
+    @Test
+    public void testUpdateInboundOrder() {
+        HttpServletRequest request = new HttpRequestFake();
+
+        BDDMockito.when(inBoundOrderService.update(
+                ArgumentMatchers.any(InBoundOrder.class), ArgumentMatchers.any(Long.class)))
+                .thenReturn(InboundOrderDtoUtils.inBoundOrderDtoList());
+
+        ResponseEntity<List<InBoundOrderDto>> inboundOrderResponse = inBoundOrderController.updateInBoundOrder(request, InboundOrderUtils.newInboundOrder());
+
+        Assertions.assertThat(inboundOrderResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 }
