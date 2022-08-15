@@ -4,5 +4,5 @@ public interface AllSellersByBuyerDto {
     Long getId();
     String getEmail();
     String getName();
-    Long getPurchaseOrder();
+    Long getPurchase_order_id();
 }
