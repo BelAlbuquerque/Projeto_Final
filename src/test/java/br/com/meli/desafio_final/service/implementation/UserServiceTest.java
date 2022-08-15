@@ -1,5 +1,7 @@
 package br.com.meli.desafio_final.service.implementation;
 
+import br.com.meli.desafio_final.configJwt.TokenService;
+import br.com.meli.desafio_final.dto.TokenDto;
 import br.com.meli.desafio_final.dto.UserDto;
 import br.com.meli.desafio_final.model.entity.Agent;
 import br.com.meli.desafio_final.model.entity.Buyer;
@@ -21,6 +23,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 
 import java.util.Optional;
 
@@ -32,19 +37,25 @@ public class UserServiceTest {
     private UserService userService;
 
     @Mock
-    AgentRepository agentRepository;
+    private AgentRepository agentRepository;
 
     @Mock
-    SellerRepository sellerRepository;
+    private SellerRepository sellerRepository;
 
     @Mock
-    BuyerRepository buyerRepository;
+    private BuyerRepository buyerRepository;
 
     @Mock
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Mock
-    WarehouseService warehouseService;
+    private WarehouseService warehouseService;
+
+    @Mock
+    private AuthenticationManager authenticationManager;
+
+    @Mock
+    private TokenService tokenService;
 
     @Test
     void testSaveNewUserSeller() {
@@ -92,5 +103,20 @@ public class UserServiceTest {
         Assertions.assertThat(userToSave).isNotNull();
         Assertions.assertThat(userToSave.getName()).isEqualTo(UserUtils.newUserDtoBuyer().getName());
         Assertions.assertThat(userToSave.getRole()).isEqualTo("BUYER");
+    }
+
+    @Test
+    void testUserLogin() {
+        BDDMockito.when(authenticationManager.authenticate(ArgumentMatchers.any(UsernamePasswordAuthenticationToken.class)))
+                .thenReturn(new AuthenticationFake());
+
+        BDDMockito.when(tokenService.generateToken(ArgumentMatchers.any(Authentication.class)))
+                .thenReturn(UserUtils.token());
+
+        TokenDto tokenDto = userService.userLogin(UserUtils.loginRequest());
+
+        Assertions.assertThat(tokenDto).isNotNull();
+        Assertions.assertThat(tokenDto.getToken()).isEqualTo(UserUtils.token());
+        Assertions.assertThat(tokenDto.getType()).isEqualTo("Bearer");
     }
 }

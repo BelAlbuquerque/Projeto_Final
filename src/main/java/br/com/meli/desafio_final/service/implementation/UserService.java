@@ -30,7 +30,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private AuthenticationManager manager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     private TokenService tokenService;
@@ -104,7 +104,7 @@ public class UserService {
 
     public TokenDto userLogin (LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken loginData = loginRequest.convert();
-        Authentication authentication = manager.authenticate(loginData);
+        Authentication authentication = authenticationManager.authenticate(loginData);
         String token = tokenService.generateToken(authentication);
         return new TokenDto(token, "Bearer");
     }
