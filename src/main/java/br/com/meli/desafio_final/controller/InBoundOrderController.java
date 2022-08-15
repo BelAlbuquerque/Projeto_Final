@@ -36,9 +36,9 @@ public class InBoundOrderController {
      * @return
      */
     // TODO: USER_ID
-    @PutMapping("/{agentId}")
+    @PutMapping("/")
         public ResponseEntity<List<InBoundOrderDto>> updateInBoundOrder(HttpServletRequest request, @RequestBody InBoundOrder inBoundOrder) {
-        Long agentId = (Long) request.getAttribute("userId");
+            Long agentId = (Long) request.getAttribute("userId");
             return ResponseEntity.status(HttpStatus.OK).body(service.update(inBoundOrder, agentId));
         }
 
