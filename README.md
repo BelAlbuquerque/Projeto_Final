@@ -40,85 +40,100 @@ com isso, implementei 4 rotas:
 
 Além disso, foi adicinado restriçoes através do token a determinadas rotas:
 
+- #### Cadastrar um novo usuário - **permitido a todos os tipos de usuários**;
+
+  - (POST) http://127.0.0.1:8080/user/registry
+
+- #### Fazer login para conseguir o token - **permitido a todos os tipos de usuários**;
+
+  - (POST) http://127.0.0.1:8080/login
+
+- #### Listar todos os clientes(BUYER) que já compraram os produtos do usuário(SELLER) - **somente o vendedor (SELLER) que está logado**;
+
+  - (GET) http://127.0.0.1:8080/user/buyers
+
+- #### Listar todos os vendedores (SELLER) um usuário (BUYER) já comprou - **somente o cliente/comprador (BUYER) que está logado**;
+
+  - (GET) http://127.0.0.1:8080/user/buyers
 
 - #### Cadastrar um lote de produtos - **somente um representante(AGENT)**;
 
-- (POST) http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/
+  - (POST) http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/
 
 - #### Atualizar um lote de produtos - **somente um representante(AGENT)**;
 
-- (PUT) http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/
+  - (PUT) http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/
 
-- #### Consultar um produto- **permitido a todos os tipos de usuários**;
+- #### Consultar um produto - **permitido a todos os tipos de usuários**;
 
-- (GET) http://127.0.0.1:8080/api/v2/adsenses/warehouse/{adsenseId_1}
+  - (GET) http://127.0.0.1:8080/api/v2/adsenses/warehouse/{adsenseId_1}
 
 - #### Listar produtos por categoria - **permitido a todos os tipos de usuários**;
-- - <sup>Onde *querytype* pode ser FRESH / FROZEN / REFRIGERATED</sup>
+  - <sup>Onde *querytype* pode ser FRESH / FROZEN / REFRIGERATED</sup>
 
-- (GET) http://127.0.0.1:8080/api/v2/adsenses/list?querytype=FRESH
+  - (GET) http://127.0.0.1:8080/api/v2/adsenses/list?querytype=FRESH
 
 - #### Listar todos os produtos - **permitido a todos os tipos de usuários**;
 
-- (GET) http://127.0.0.1:8080/api/v2/adsenses
+  - (GET) http://127.0.0.1:8080/api/v2/adsenses
 
 - #### Adicionar o produto a um carrinho de compras - **somente um client/comprador(BUYER)**;
 
-- (POST) http://127.0.0.1:8080/api/v2/fresh-products/orders
+  - (POST) http://127.0.0.1:8080/api/v2/fresh-products/orders
 
 - #### Mostrar os produtos no pedido - **somente um client/comprador(BUYER)**;
   
-- (GET) http://127.0.0.1:8080/api/v2/fresh-products/orders/{purchaseOrderId}
+  - (GET) http://127.0.0.1:8080/api/v2/fresh-products/orders/{purchaseOrderId}
 
 - #### Modificar o status do pedido - **somente um client/comprador(BUYER)**;
 
-- (POST) http://127.0.0.1:8080/api/v2/fresh-products/orders/?purchaseOrderId={purchaseOrderId}
+  - (POST) http://127.0.0.1:8080/api/v2/fresh-products/orders/?purchaseOrderId={purchaseOrderId}
 
-- Listar  todos os produtos - **permitido a todos os tipos de usuários**;
+- #### Listar  todos os produtos - **permitido a todos os tipos de usuários**;
 
-- (GET) http://127.0.0.1:8080/api/v2/fresh-products
+  - (GET) http://127.0.0.1:8080/api/v2/fresh-products
 
-- Listar todos os produtos por categoria - **permitido a todos os tipos de usuários**;
+- #### Listar todos os produtos por categoria - **permitido a todos os tipos de usuários**;
   - <sup>Onde *querytype* pode ser FRESH / FROZEN / REFRIGERATED</sup>
 
-- (GET) http://127.0.0.1:8080/api/v2/fresh-products/list?querytype=FROZEN
+  - (GET) http://127.0.0.1:8080/api/v2/fresh-products/list?querytype=FROZEN
 
-- Listar todos os lotes de um determinado produto - **somente um representante ou um vendedor (AGENT, SELLER)**;
+- #### Listar todos os lotes de um determinado produto - **somente um representante ou um vendedor (AGENT, SELLER)**;
   - <sup>Onde *productId* é o id do produto que deseja buscar</sup>
   - <sup>Onde *s* é o ?????????? que deseja ordenar</sup>
 
-- (GET) http://127.0.0.1:8080/api/v2/fresh-products/sortlist?productId=1&s=L
+  - (GET) http://127.0.0.1:8080/api/v2/fresh-products/sortlist?productId=1&s=L
 
-- Listar  todos anuncios - **permitido a todos os tipos de usuários**;
+- #### Listar  todos anuncios - **permitido a todos os tipos de usuários**;
 
-- (GET) http://127.0.0.1:8080/api/v2/adsenses
+  - (GET) http://127.0.0.1:8080/api/v2/adsenses
 
-- Listar  todos anuncios por categoria - **permitido a todos os tipos de usuários**;
+- #### Listar  todos anuncios por categoria - **permitido a todos os tipos de usuários**;
   - <sup>Onde *querytype* pode ser FRESH / FROZEN / REFRIGERATED</sup>
 
-- (GET) http://127.0.0.1:8080/api/v2/adsenses/list?querytype=FROZEN
+  - (GET) http://127.0.0.1:8080/api/v2/adsenses/list?querytype=FROZEN
 
-- Busca por um anuncio específico em um armazem - **permitido a todos os tipos de usuários**;
+- #### Busca por um anuncio específico em um armazem - **permitido a todos os tipos de usuários**;
 
-- (GET) http://127.0.0.1:8080/api/v2/adsenses/warehouse/{adsenseId}
+  - (GET) http://127.0.0.1:8080/api/v2/adsenses/warehouse/{adsenseId}
 
-- Listar todos os lotes de um anuncio - **somente um representante ou um vendedor (AGENT, SELLER)**;
+- #### Listar todos os lotes de um anuncio - **somente um representante ou um vendedor (AGENT, SELLER)**;
 
-- (GET) http://127.0.0.1:8080/batch/{adsenseId}
+  - (GET) http://127.0.0.1:8080/batch/{adsenseId}
 
-- Listar os lotes de um setor em um armazém ordenados pela data de vencimento - **somente um representante ou um vendedor (AGENT, SELLER)**;
+- #### Listar os lotes de um setor em um armazém ordenados pela data de vencimento - **somente um representante ou um vendedor (AGENT, SELLER)**;
   - <sup>Onde *sectionId* é o id da section que deseja buscar</sup>
   - <sup>Onde *numberOfDays* é o intervalo de dias, a partir do dia da busca, que um produto pode vencer</sup>
 
-- (GET) http://127.0.0.1:8080/batch/due-date?sectionId=1&numberOfDays=25
+  - (GET) http://127.0.0.1:8080/batch/due-date?sectionId=1&numberOfDays=25
 
-- Listar os lotes dentro do prazo de validade solicitado que pertece a uma determinada categoria de produto, podendo 
+- #### Listar os lotes dentro do prazo de validade solicitado que pertece a uma determinada categoria de produto, podendo 
   ser ordenada pela quantidade de forma crescente ou decrescente - **somente um representante ou um vendedor (AGENT, SELLER)**;
   - <sup>Onde *category* pode ser FRESH / FROZEN / REFRIGERATED</sup>
   - <sup>Onde *order* pose ser ASC (crescente) / DESC (descrescente)</sup>
   - <sup>Onde *numberOfDays* é o intervalo de dias, a partir do dia da busca, que um produto pode vencer</sup>
 
-- (GET) http://127.0.0.1:8080/batch/due-date/list?numberOfDays=25&category=FRESH&order=ASC
+  - (GET) http://127.0.0.1:8080/batch/due-date/list?numberOfDays=25&category=FRESH&order=ASC
 
 **Como a nossa equipe de desenvolvedores é muito preocupada com a qualidade do nosso serviço,
 desenvolvemos testes unitários, garantindo que nossa aplicação funciona, é escalável e segura;**
