@@ -5,17 +5,17 @@ import br.com.meli.desafio_final.model.entity.Seller;
 public class SellerUtils {
 
     public static Seller newSeller1ToSave() {
-        return Seller.builder()
-                .id(1L)
-                .name("Joao")
-                .build();
+        Seller seller = new Seller();
+        seller.setId(1L);
+        seller.setName("Joao");
+        return seller;
     }
 
     public static Seller newSeller2ToSave() {
-        return Seller.builder()
-                .id(2L)
-                .name("Nicolas")
-                .build();
+        Seller seller = new Seller();
+        seller.setId(2L);
+        seller.setName("Nicolas");
+        return seller;
     }
 
 }

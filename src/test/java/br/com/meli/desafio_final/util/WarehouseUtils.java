@@ -10,4 +10,10 @@ public class WarehouseUtils {
         warehouse.setName("Warehouse");
         return warehouse;
     }
+
+    public static Warehouse newWarehouseWithoutId() {
+        Warehouse warehouse = new Warehouse();
+        warehouse.setName("Warehouse");
+        return warehouse;
+    }
 }

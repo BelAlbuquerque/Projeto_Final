@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -22,9 +23,8 @@ public class ProductController {
      * Nesse método retornamos uma lista com todos os produtos
      * @return
      */
-
     @GetMapping
-    public ResponseEntity<List<Product>> getAll() {
+    public ResponseEntity<List<Product>> findAll() {
         return ResponseEntity.ok(service.findAllProducts());
     }
 
@@ -35,7 +35,7 @@ public class ProductController {
      */
 
     @GetMapping("/list")
-    public ResponseEntity<List<Product>> getByCategory(@RequestParam Category querytype) {
+    public ResponseEntity<List<Product>> findByCategory(@RequestParam Category querytype) {
         return ResponseEntity.ok(service.findByCategory(querytype));
     }
 

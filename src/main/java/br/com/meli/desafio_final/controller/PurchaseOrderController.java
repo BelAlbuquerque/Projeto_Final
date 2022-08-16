@@ -24,7 +24,7 @@ public class PurchaseOrderController {
      * @return
      */
     @PostMapping("/orders")
-    public ResponseEntity<Double> save(@RequestBody PurchaseOrder purchaseOrder) {
+    public ResponseEntity<Double> savePurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
         return ResponseEntity.status(HttpStatus.CREATED).body(purchaseOrderService.save(purchaseOrder));
     }
 
@@ -44,9 +44,8 @@ public class PurchaseOrderController {
      * @param purchaseOrderId
      * @return
      */
-    //TODO: fazer DTO
     @PutMapping("/orders/")
-    public ResponseEntity<PurchaseOrderDto> update(@RequestParam Long purchaseOrderId) {
+    public ResponseEntity<PurchaseOrderDto> updatePurchaseOrder(@RequestParam Long purchaseOrderId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new PurchaseOrderDto(purchaseOrderService.updateToFinished(purchaseOrderId)));
     }

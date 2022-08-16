@@ -104,7 +104,7 @@ public class AdsenseControllerTest {
         BDDMockito.when(service.findAdsenseByWarehouseAndQuantity(adsenseId))
                 .thenReturn(AdsenseByWarehouseDtoUtils.AdsenseByWarehouseDtoListDto());
 
-        ResponseEntity <List<AdsenseByWarehouseDto>> response = controller.getByAdsenseByWarehouse(adsenseId);
+        ResponseEntity <List<AdsenseByWarehouseDto>> response = controller.findByAdsenseByWarehouse(adsenseId);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
