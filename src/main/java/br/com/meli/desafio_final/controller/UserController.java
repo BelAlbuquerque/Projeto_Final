@@ -1,7 +1,6 @@
 package br.com.meli.desafio_final.controller;
 
 import br.com.meli.desafio_final.dto.*;
-import br.com.meli.desafio_final.model.entity.InBoundOrder;
 import br.com.meli.desafio_final.request.LoginRequest;
 import br.com.meli.desafio_final.request.UserRequest;
 import br.com.meli.desafio_final.service.implementation.UserService;

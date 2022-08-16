@@ -1,6 +1,8 @@
 package br.com.meli.desafio_final.service.implementation;
 
 import br.com.meli.desafio_final.configJwt.TokenService;
+import br.com.meli.desafio_final.dto.AllBuyersBySellerDto;
+import br.com.meli.desafio_final.dto.AllSellersByBuyerDto;
 import br.com.meli.desafio_final.dto.TokenDto;
 import br.com.meli.desafio_final.dto.UserDto;
 import br.com.meli.desafio_final.model.entity.Agent;
@@ -27,6 +29,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
+import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
@@ -118,5 +121,27 @@ public class UserServiceTest {
         Assertions.assertThat(tokenDto).isNotNull();
         Assertions.assertThat(tokenDto.getToken()).isEqualTo(UserUtils.token());
         Assertions.assertThat(tokenDto.getType()).isEqualTo("Bearer");
+    }
+
+    @Test
+    void testFindAllSellersByBuyer() {
+        BDDMockito.when(userRepository.findAllSellesByBuyer(ArgumentMatchers.any(Long.class)))
+                .thenReturn(UserUtils.allSellersByBuyerDtoList());
+
+        List<AllSellersByBuyerDto> allSellersByBuyerDtoList = userService.findAllSellersByBuyer(UserUtils.newUserBuyer().getId());
+
+        Assertions.assertThat(allSellersByBuyerDtoList).isNotNull();
+        Assertions.assertThat(allSellersByBuyerDtoList.size()).isEqualTo(2);
+    }
+
+    @Test
+    void testFindAllBuyersBySeller() {
+        BDDMockito.when(userRepository.findAllBuyersBySeller(ArgumentMatchers.any(Long.class)))
+                .thenReturn(UserUtils.allBuyersBySellerDtoList());
+
+        List<AllBuyersBySellerDto> allBuyersBySellerDtoList = userService.findAllBuyersBySeller(UserUtils.newUserSeller().getId());
+
+        Assertions.assertThat(allBuyersBySellerDtoList).isNotNull();
+        Assertions.assertThat(allBuyersBySellerDtoList.size()).isEqualTo(2);
     }
 }
