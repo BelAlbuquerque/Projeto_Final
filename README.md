@@ -38,7 +38,9 @@ com isso, implementei 4 rotas:
 
 -rota para que um consumidor("buyer") consiga ver a lista de vendedores dos quais já comprou produtos;
 
-Além disso, foi adicinado restriçoes através do token a determinadas rotas:
+## Segue a lista completa dos endipoints e suas restrições:
+
+### Rotas de usuário:
 
 - #### Cadastrar um novo usuário - **permitido a todos os tipos de usuários**;
 
@@ -56,6 +58,10 @@ Além disso, foi adicinado restriçoes através do token a determinadas rotas:
 
   - (GET) http://127.0.0.1:8080/user/buyers
 
+<hr>
+
+### Rotas inboundOrder:
+
 - #### Cadastrar um lote de produtos - **somente um representante(AGENT)**;
 
   - (POST) http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/
@@ -63,6 +69,10 @@ Além disso, foi adicinado restriçoes através do token a determinadas rotas:
 - #### Atualizar um lote de produtos - **somente um representante(AGENT)**;
 
   - (PUT) http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/
+
+<hr>
+
+### Rotas adsense:
 
 - #### Consultar um produto - **permitido a todos os tipos de usuários**;
 
@@ -77,6 +87,10 @@ Além disso, foi adicinado restriçoes através do token a determinadas rotas:
 
   - (GET) http://127.0.0.1:8080/api/v2/adsenses
 
+<hr>
+
+### Rotas purchaseOrder:
+
 - #### Adicionar o produto a um carrinho de compras - **somente um client/comprador(BUYER)**;
 
   - (POST) http://127.0.0.1:8080/api/v2/fresh-products/orders
@@ -88,6 +102,10 @@ Além disso, foi adicinado restriçoes através do token a determinadas rotas:
 - #### Modificar o status do pedido - **somente um client/comprador(BUYER)**;
 
   - (POST) http://127.0.0.1:8080/api/v2/fresh-products/orders/?purchaseOrderId={purchaseOrderId}
+
+<hr>
+
+### Rotas product:
 
 - #### Listar  todos os produtos - **permitido a todos os tipos de usuários**;
 
@@ -104,18 +122,9 @@ Além disso, foi adicinado restriçoes através do token a determinadas rotas:
 
   - (GET) http://127.0.0.1:8080/api/v2/fresh-products/sortlist?productId=1&s=L
 
-- #### Listar  todos anuncios - **permitido a todos os tipos de usuários**;
+<hr>
 
-  - (GET) http://127.0.0.1:8080/api/v2/adsenses
-
-- #### Listar  todos anuncios por categoria - **permitido a todos os tipos de usuários**;
-  - <sup>Onde *querytype* pode ser FRESH / FROZEN / REFRIGERATED</sup>
-
-  - (GET) http://127.0.0.1:8080/api/v2/adsenses/list?querytype=FROZEN
-
-- #### Busca por um anuncio específico em um armazem - **permitido a todos os tipos de usuários**;
-
-  - (GET) http://127.0.0.1:8080/api/v2/adsenses/warehouse/{adsenseId}
+### Rotas batch:
 
 - #### Listar todos os lotes de um anuncio - **somente um representante ou um vendedor (AGENT, SELLER)**;
 
