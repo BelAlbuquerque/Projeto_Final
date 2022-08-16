@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/v2/fresh-products/sortlist").hasAnyAuthority("AGENT", "SELLER")
                 .antMatchers(HttpMethod.POST, "/api/v2/fresh-products/orders").hasAnyAuthority("BUYER")
                 .antMatchers(HttpMethod.PUT, "/api/v2/fresh-products/orders/").hasAnyAuthority("BUYER")
-                .antMatchers(HttpMethod.GET, "/api/v2/fresh-products/orders/{purchaseOrderId}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v2/fresh-products/orders/{purchaseOrderId}").hasAnyAuthority("BUYER")
 
                 .anyRequest().authenticated()
                 .and().csrf().disable()

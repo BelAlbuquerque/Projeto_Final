@@ -1,10 +1,260 @@
 {
 	"info": {
-		"_postman_id": "66392129-9838-4ba8-b335-c14133b103f3",
+		"_postman_id": "3b392c61-afa8-4496-81a3-944b65a1375c",
 		"name": "Desafio 3 - Projeto Integrador",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Cadastra um SELLER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Otto\",\n    \"email\": \"otto@otto.com\",\n    \"password\": \"19naosao20\",\n    \"role\": \"SELLER\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/user/registry",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"registry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastra um BUYER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Panqueca\",\n    \"email\": \"punkpunk@punk.com\",\n    \"password\": \"stogges\",\n    \"role\": \"BUYER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/user/registry",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"registry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastra um AGENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Djingo\",\n    \"email\": \"dinguinha@djingo.com\",\n    \"password\": \"velvetgoldmine\",\n    \"role\": \"AGENT\",\n    \"warehouse\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/user/registry",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"registry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login com SELLER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"otto@otto.com\",\n    \"password\": \"19naosao20\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login com BUYER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"punkpunk@punk.com\",\n    \"password\": \"stogges\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login com AGENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"dinguinha@djingo.com\",\n    \"password\": \"velvetgoldmine\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Encontra todos os vendedores que um usuário já comprou",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwdW5rcHVua0BwdW5rLmNvbSIsImlhdCI6MTY2MDU4Njg5NSwiZXhwIjoxNjYwNjczMjk1fQ.q28gEcxaxuoIx8El13uo_wXhMGXTGLzDfq--fy10qms",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/user/sellers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"sellers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Encontra todas as usuários que já compraram de um vendedor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/user/buyers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"buyers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Adsense",
 			"item": [
@@ -97,6 +347,111 @@
 								"adsenses",
 								"warehouse",
 								"{{adsenseId_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/v2/fresh-products",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v2",
+								"fresh-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/v2/fresh-products/list?querytype=FROZEN",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v2",
+								"fresh-products",
+								"list"
+							],
+							"query": [
+								{
+									"key": "querytype",
+									"value": "FROZEN"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findBatchByProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/v2/fresh-products/sortlist?productId=1&s=L",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v2",
+								"fresh-products",
+								"sortlist"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "1"
+								},
+								{
+									"key": "s",
+									"value": "L"
+								},
+								{
+									"key": "s",
+									"value": "Q",
+									"disabled": true
+								},
+								{
+									"key": "s",
+									"value": "V",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -288,111 +643,6 @@
 			]
 		},
 		{
-			"name": "Product",
-			"item": [
-				{
-					"name": "getAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/api/v2/fresh-products",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v2",
-								"fresh-products"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getByCategory",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/api/v2/fresh-products/list?querytype=FROZEN",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v2",
-								"fresh-products",
-								"list"
-							],
-							"query": [
-								{
-									"key": "querytype",
-									"value": "FROZEN"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findBatchByProduct",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8080/api/v2/fresh-products/sortlist?productId=1&s=L",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v2",
-								"fresh-products",
-								"sortlist"
-							],
-							"query": [
-								{
-									"key": "productId",
-									"value": "1"
-								},
-								{
-									"key": "s",
-									"value": "L"
-								},
-								{
-									"key": "s",
-									"value": "Q",
-									"disabled": true
-								},
-								{
-									"key": "s",
-									"value": "V",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Purchase Order",
 			"item": [
 				{
@@ -522,6 +772,10 @@
 		{
 			"key": "purchaseOrderId_1",
 			"value": "1"
+		},
+		{
+			"key": "Autho",
+			"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvdHRvQG90dG8uY29tIiwiaWF0IjoxNjYwNTcyNTYxLCJleHAiOjE2NjA2NTg5NjF9.9NPIvIt05MIp2Zb80u8FNjuFC2tCOD0Ru-0MXdwO6HM"
 		}
 	]
 }
