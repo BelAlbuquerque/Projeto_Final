@@ -13,7 +13,6 @@ public class BuyerUtils {
 
     public static Buyer newBuyer2ToSave() {
         Buyer buyer = new Buyer();
-        buyer.setId(2L);
         buyer.setName("Steve Trevor");
         return buyer;
     }

@@ -26,14 +26,6 @@ public class UserUtils {
         return new UserRequest(2L, "Name", "AGENT", "agent@email.com", "password", warehouse);
     }
 
-    public static UserRequest newUserRequestBuyerWithoutId() {
-        UserRequest user = new UserRequest();
-        user.setName("Name");
-        user.setRole("BUYER");
-        user.setEmail("buyer@email.com");
-        user.setPassword("password");
-        return user;
-    }
 
     public static UserRequest newUserRequestBuyer() {
         return new UserRequest(1L, "Name", "BUYER", "buyer@email.com", "password", new Warehouse());
@@ -43,12 +35,24 @@ public class UserUtils {
         return new User(1L, "Name", "SELLER", "seller@email.com", "$2a$10$eURFnyaPsM29B.sLcDxSFO78lx/H1UVQE5jJ0pzKDIUfs4nx9qmKy");
     }
 
+    public static User newUserSeller2() {
+        return new User(2L, "Name", "SELLER", "seller2@email.com", "$2a$10$eURFnyaPsM29B.sLcDxSFO78lx/H1UVQE5jJ0pzKDIUfs4nx9qmKy");
+    }
     public static User newUserAgent() {
         return new User(2L, "Name", "AGENT", "agent@email.com", "password");
     }
 
     public static User newUserBuyer() {
         return new User(1L, "Name", "BUYER", "buyer@email.com", "password");
+    }
+
+    public static User newUserBuyer2() {
+        User user = new User();
+        user.setName("Name");
+        user.setRole("BUYER");
+        user.setEmail("buyer2@email.com");
+        user.setPassword("password");
+        return user;
     }
 
     public static UserDto newUserDtoSeller() {

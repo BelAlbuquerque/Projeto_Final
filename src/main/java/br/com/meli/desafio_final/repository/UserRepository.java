@@ -15,32 +15,32 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
     @Query(value = "SELECT\n" +
-            "frescos.user.id,\n" +
-            "frescos.user.email,\n" +
-            "frescos.user.name,\n" +
-            "frescos.purchase_order.id AS purchase_order_id\n" +
-            "FROM frescos.user\n" +
-            "JOIN frescos.purchase_order\n" +
-            "JOIN frescos.item\n" +
-            "JOIN frescos.adsense\n" +
-            "WHERE frescos.user.id = frescos.adsense.seller_id\n" +
-            "AND frescos.adsense.id = frescos.item.adsense_id\n" +
-            "AND frescos.item.purchase_order_id = frescos.purchase_order.id\n" +
-            "AND frescos.purchase_order.buyer_id = ?1", nativeQuery = true)
+            "user.id,\n" +
+            "user.email,\n" +
+            "user.name,\n" +
+            "purchase_order.id AS purchase_order_id\n" +
+            "FROM user\n" +
+            "JOIN purchase_order\n" +
+            "JOIN item\n" +
+            "JOIN adsense\n" +
+            "WHERE user.id = adsense.seller_id\n" +
+            "AND adsense.id = item.adsense_id\n" +
+            "AND item.purchase_order_id = purchase_order.id\n" +
+            "AND purchase_order.buyer_id = ?1", nativeQuery = true)
     List<AllSellersByBuyerDto> findAllSellesByBuyer(Long buyerId);
 
     @Query(value = "SELECT\n" +
-            "frescos.user.id,\n" +
-            "frescos.user.email,\n" +
-            "frescos.user.name,\n" +
-            "frescos.purchase_order.id AS purchase_order_id\n" +
-            "FROM frescos.user\n" +
-            "JOIN frescos.purchase_order\n" +
-            "JOIN frescos.item\n" +
-            "JOIN frescos.adsense\n" +
-            "WHERE frescos.user.id = frescos.purchase_order.buyer_id\n" +
-            "AND frescos.purchase_order.id = frescos.item.purchase_order_id\n" +
-            "AND frescos.item.adsense_id = frescos.adsense.id\n" +
-            "AND frescos.adsense.seller_id = ?1", nativeQuery = true)
+            "user.id,\n" +
+            "user.email,\n" +
+            "user.name,\n" +
+            "purchase_order.id AS purchase_order_id\n" +
+            "FROM user\n" +
+            "JOIN purchase_order\n" +
+            "JOIN item\n" +
+            "JOIN adsense\n" +
+            "WHERE user.id = purchase_order.buyer_id\n" +
+            "AND purchase_order.id = item.purchase_order_id\n" +
+            "AND item.adsense_id = adsense.id\n" +
+            "AND adsense.seller_id = ?1", nativeQuery = true)
     List<AllBuyersBySellerDto> findAllBuyersBySeller(Long sellerId);
 }
