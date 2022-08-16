@@ -118,7 +118,7 @@ com isso, implementei 4 rotas:
 
 - #### Listar todos os lotes de um determinado produto - **somente um representante ou um vendedor (AGENT, SELLER)**;
   - <sup>Onde *productId* é o id do produto que deseja buscar</sup>
-  - <sup>Onde *s* é o ?????????? que deseja ordenar</sup>
+  - <sup>Onde *s* é o criterio de ordenação a ser escolhido: L = lote, Q = quantidade, V = vencimento</sup>
 
   - (GET) http://127.0.0.1:8080/api/v2/fresh-products/sortlist?productId=1&s=L
 
