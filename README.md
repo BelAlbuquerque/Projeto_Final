@@ -21,6 +21,20 @@ Esse projeto foi desenvolvido por:
 Nesse projeto, aplicamos os conteudos que aprendemos até este momento no BootCamp de Java.
 Trata-se de uma aplicação desenvolvida de forma a implementar uma API REST.
 
+### Para rodar a aplicação:
+
+- No ambiente de desenvolvimento, a configuração no arquivo [application.properties](src/main/resources/application.properties) deve ser:
+```
+spring.profiles.active=dev
+```
+
+- No ambiente de teste, a configuração no arquivo [application.properties](src/main/resources/application.properties) deve ser:
+```
+spring.profiles.active=test
+```
+
+### A documentação das rotas está no arquivo [Desafio 3 - Projeto Integrador.postman_collection](Desafio%203%20-%20Projeto%20Integrador.postman_collection.json)
+
 ### Requisito pessoal:
 
 Como melhoria para a aplicação, escolhi implementar uma camada de proteção à aplicação utilizando JWT.
@@ -147,5 +161,4 @@ com isso, implementei 4 rotas:
 **Como a nossa equipe de desenvolvedores é muito preocupada com a qualidade do nosso serviço,
 desenvolvemos testes unitários, garantindo que nossa aplicação funciona, é escalável e segura;**
 
-A documentação das rotas está neste [arquivo](Desafio%203%20-%20Projeto%20Integrador.postman_collection.json)
 
