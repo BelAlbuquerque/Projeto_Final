@@ -33,7 +33,10 @@ spring.profiles.active=dev
 spring.profiles.active=test
 ```
 
-### A documentação das rotas está no arquivo [Desafio 3 - Projeto Integrador.postman_collection](Desafio%203%20-%20Projeto%20Integrador.postman_collection.json)
+### Mapa Entidade - Relacionamento
+
+![Captura de Tela 2022-08-17 às 07 05 54](https://user-images.githubusercontent.com/107960288/185093121-e0d79f25-7d2c-41db-95f7-b27be13741c8.png)
+
 
 ### Requisito pessoal:
 
@@ -161,4 +164,5 @@ com isso, implementei 4 rotas:
 **Como a nossa equipe de desenvolvedores é muito preocupada com a qualidade do nosso serviço,
 desenvolvemos testes unitários, garantindo que nossa aplicação funciona, é escalável e segura;**
 
+#### A documentação completa das rotas está no arquivo [Desafio 3 - Projeto Integrador.postman_collection](Desafio%203%20-%20Projeto%20Integrador.postman_collection.json)
 
