@@ -50,6 +50,11 @@ public class UserService {
     @Autowired
     WarehouseService warehouseService;
 
+    /**
+     * Esse metodo salva um novo usuário do DB na tabela User
+     * @param user
+     * @return
+     */
     private User saveUser(UserRequest user) {
         User newUser = new User();
         newUser.setPassword(user.getPassword());
@@ -59,6 +64,11 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
+    /**
+     * Esse método salva um novo Agent no DB na tabela Agent
+     * @param user
+     * @param agentId
+     */
     private void saveAgent(UserRequest user, Long agentId) {
         warehouseService.findWarehouse(user.getWarehouse().getId()).orElseThrow(() -> { throw new BadRequest("Armazem não existe em nosso banco de dados");});
         Agent agent = new Agent();
@@ -68,6 +78,10 @@ public class UserService {
         agentRepository.save(agent);
     }
 
+    /**
+     * Esse método salva um novo Seller no DB na tabela Seller
+     * @param user
+     */
     private void saveSeller(User user) {
         Seller seller = new Seller();
         seller.setName(user.getName());
@@ -75,6 +89,10 @@ public class UserService {
         sellerRepository.save(seller);
     }
 
+    /**
+     * Esse método salva um novo Buyer no DB na tabela Buyer
+     * @param user
+     */
     private void saveBuyer(User user) {
         Buyer buyer = new Buyer();
         buyer.setId(user.getId());
@@ -82,6 +100,11 @@ public class UserService {
         buyerRepository.save(buyer);
     }
 
+    /**
+     * Essem método recebe um UserRequest do controller, valida e salva de acordo com a role do User.
+     * @param user
+     * @return
+     */
     @Transactional
     public UserDto saveNewUser(UserRequest user) {
         User newUser = null;
@@ -102,6 +125,11 @@ public class UserService {
         return new UserDto(newUser);
     }
 
+    /**
+     * Esse metodo recebe um LoginRequest, valida com o DB e devolve um token.
+     * @param loginRequest
+     * @return
+     */
     public TokenDto userLogin (LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken loginData = loginRequest.convert();
         Authentication authentication = authenticationManager.authenticate(loginData);
@@ -109,10 +137,20 @@ public class UserService {
         return new TokenDto(token, "Bearer");
     }
 
+    /**
+     * Esse método pede pro DB uma lista de todos os Sellers que o buyerId já comprou.
+     * @param buyerId
+     * @return
+     */
     public List<AllSellersByBuyerDto> findAllSellersByBuyer(Long buyerId) {
         return userRepository.findAllSellesByBuyer(buyerId);
     }
 
+    /**
+     * Esse método pede pro DB uma lista de todos os Buyers que já compraram desse sellerId.
+     * @param sellerId
+     * @return
+     */
     public List<AllBuyersBySellerDto> findAllBuyersBySeller(Long sellerId) {
         return userRepository.findAllBuyersBySeller(sellerId);
     }

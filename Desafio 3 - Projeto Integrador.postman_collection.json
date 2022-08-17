@@ -573,11 +573,21 @@
 				{
 					"name": "createInBoundOrder",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaW5ndWluaGFAZGppbmdvLmNvbSIsImlhdCI6MTY2MDc0OTAzOSwiZXhwIjoxNjYwODM1NDM5fQ.9Jbo2eNNqmzCRbpgnkkyVgfzOSkiUxu1WG4nlNuGI94",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"section\": {\n\t\t\"id\": 1,\n\t\t\"warehouseCode\": 1\n\t},\n\t\"batchStock\": [\n\t\t{\n\t\t\t\"batchNumber\": 1,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"currentTemperature\": 20,\n\t\t\t\"minimumTemperature\": 10,\n\t\t\t\"initialQuantity\": 10,\n\t\t\t\"currentQuantity\": 10,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t},\n\t\t{\n\t\t\t\"batchNumber\": 2,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"currentTemperature\": 15,\n\t\t\t\"minimumTemperature\": 5,\n\t\t\t\"initialQuantity\": 10,\n\t\t\t\"currentQuantity\": 10,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t}\n\t]\n}",
+							"raw": "{\n\t\"section\": {\n\t\t\"id\": 1,\n\t\t\"warehouseCode\": 1\n\t},\n\t\"batchStock\": [\n\t\t{\n\t\t\t\"batchNumber\": 10,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 5\n\t\t\t},\n\t\t\t\"currentTemperature\": 20,\n\t\t\t\"minimumTemperature\": 10,\n\t\t\t\"initialQuantity\": 10,\n\t\t\t\"currentQuantity\": 10,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t},\n\t\t{\n\t\t\t\"batchNumber\": 20,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 20\n\t\t\t},\n\t\t\t\"currentTemperature\": 15,\n\t\t\t\"minimumTemperature\": 5,\n\t\t\t\"initialQuantity\": 10,\n\t\t\t\"currentQuantity\": 10,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t}\n\t]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -585,7 +595,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/{{agentId_1}}",
+							"raw": "http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -599,7 +609,7 @@
 								"v1",
 								"fresh-products",
 								"inboundorder",
-								"{{agentId_1}}"
+								""
 							]
 						}
 					},
@@ -608,11 +618,21 @@
 				{
 					"name": "updateInBoundOrder",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaW5ndWluaGFAZGppbmdvLmNvbSIsImlhdCI6MTY2MDc0OTAzOSwiZXhwIjoxNjYwODM1NDM5fQ.9Jbo2eNNqmzCRbpgnkkyVgfzOSkiUxu1WG4nlNuGI94",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\": 1,\n\t\"section\": {\n\t\t\"id\": 1,\n\t\t\"warehouseCode\": 1\n\t},\n\t\"batchStock\": [\n\t\t{\n\t\t\t\"batchNumber\": 1,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"currentTemperature\": 20,\n\t\t\t\"minimumTemperature\": 10,\n\t\t\t\"initialQuantity\": 400,\n\t\t\t\"currentQuantity\": 400,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t},\n\t\t{\n\t\t\t\"batchNumber\": 2,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 1\n\t\t\t},\n\t\t\t\"currentTemperature\": 15,\n\t\t\t\"minimumTemperature\": 5,\n\t\t\t\"initialQuantity\": 1330,\n\t\t\t\"currentQuantity\": 1330,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t}\n\t]\n}",
+							"raw": "{\n\t\"id\": 1,\n\t\"section\": {\n\t\t\"id\": 1,\n\t\t\"warehouseCode\": 1\n\t},\n\t\"batchStock\": [\n\t\t{\n\t\t\t\"batchNumber\": 10,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 5\n\t\t\t},\n\t\t\t\"currentTemperature\": 20,\n\t\t\t\"minimumTemperature\": 10,\n\t\t\t\"initialQuantity\": 400,\n\t\t\t\"currentQuantity\": 400,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t},\n\t\t{\n\t\t\t\"batchNumber\": 20,\n\t\t\t\"adsense\": {\n\t\t\t\t\"id\": 20\n\t\t\t},\n\t\t\t\"currentTemperature\": 15,\n\t\t\t\"minimumTemperature\": 5,\n\t\t\t\"initialQuantity\": 1330,\n\t\t\t\"currentQuantity\": 1330,\n\t\t\t\"manufacturingDate\": \"2022-05-03\",\n\t\t\t\"manufacturingTime\": \"2022-01-03T10:15:30\",\n\t\t\t\"dueDate\": \"2022-09-05\"\n\t\t}\n\t]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -620,7 +640,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/{{agentId_1}}",
+							"raw": "http://127.0.0.1:8080/api/v1/fresh-products/inboundorder/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -634,7 +654,7 @@
 								"v1",
 								"fresh-products",
 								"inboundorder",
-								"{{agentId_1}}"
+								""
 							]
 						}
 					},
@@ -648,11 +668,21 @@
 				{
 					"name": "Salva o carrinho",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwdW5rcHVua0BwdW5rLmNvbSIsImlhdCI6MTY2MDc0MzUxNCwiZXhwIjoxNjYwODI5OTE0fQ.yhufIrSLMhYuprZIfMcWDs9bL8zkT5pSFJuavOclB2k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"OPEN\",\n    \"date\": \"2022-08-10\",\n    \"buyer\": {\n        \"id\": 1\n    },\n    \"itemList\": [\n        {\n            \"currentPrice\": 0.50,\n            \"quantity\": 2000,\n            \"adsense\": {\n                \"id\": 5\n            }\n        },\n        {\n            \"currentPrice\": 0.80,\n            \"quantity\": 700,\n            \"adsense\": {\n                \"id\": 3\n            }\n        }\n    ]\n}",
+							"raw": "{\n    \"status\": \"OPEN\",\n    \"date\": \"2022-08-10\",\n    \"buyer\": {\n        \"id\": 1\n    },\n    \"itemList\": [\n        {\n            \"currentPrice\": 15.99,\n            \"quantity\": 2000,\n            \"adsense\": {\n                \"id\": 5\n            }\n        },\n        {\n            \"currentPrice\": 15.99,\n            \"quantity\": 700,\n            \"adsense\": {\n                \"id\": 20\n            }\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"

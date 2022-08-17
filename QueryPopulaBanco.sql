@@ -50,32 +50,7 @@ insert into product values (null, "FRESH", "orégano", 0.1);
 insert into product values (null, "REFRIGERATED", "queijo brie", 0.5);
 insert into product values (null, "FROZEN", "fraldinha", 0.6);
 
-insert into seller values (null, "Raul");
-insert into seller values (null, "Bon Jovi");
-insert into seller values (null, "Eddy");
-insert into seller values (null, "Mulher Maravilha");
-insert into seller values (null, "Nando Reis");
-insert into seller values (null, "Cássia Eller");
-
-insert into agent values (null, "Armandinho", 1);
-insert into agent values (null, "Bowie", 2);
-insert into agent values (null, "Wonder Woman", 3);
-insert into agent values (null, "Paul", 4);
-insert into agent values (null, "Bruce", 5);
-insert into agent values (null, "Rita Lee", 6);
-
-insert into buyer values(null, "Panqueca");
-insert into buyer values(null, "Otto");
-insert into buyer values(null, "Betânia");
-insert into buyer values(null, "Gal");
-insert into buyer values(null, "Yoshi");
-insert into buyer values(null, "Lisa");
-insert into buyer values(null, "Bela");
-insert into buyer values(null, "Tony");
-insert into buyer values(null, "Mérion");
-insert into buyer values(null, "Sofia");
-insert into buyer values(null, "Eros");
-insert into buyer values(null, "Jana");
+----------> Adicionar o adsense de acordo com o id do SELLER <-----------
 
 insert into adsense values (null, 10.99, 1, 1);
 insert into adsense values (null, 79.99, 2, 1);

@@ -13,6 +13,11 @@ public class WarehouseService {
     @Autowired
     WarehouseRepository warehouseRepository;
 
+    /**
+     * Busca warehouse pelo id
+     * @param id
+     * @return
+     */
     public Optional<Warehouse> findWarehouse(Long id) {
         return warehouseRepository.findById(id);
     }
