@@ -18,7 +18,7 @@ public class BatchController {
     BatchService service;
 
     /**
-     * Nesse método retornamos uma lista de anúncio por Id
+     * Nesse método retornamos uma lista de lotes por anúncio.
      * @param adsenseId
      */
     @GetMapping("/{adsenseId}")
