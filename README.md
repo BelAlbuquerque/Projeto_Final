@@ -164,5 +164,5 @@ com isso, implementei 4 rotas:
 **Como a nossa equipe de desenvolvedores é muito preocupada com a qualidade do nosso serviço,
 desenvolvemos testes unitários, garantindo que nossa aplicação funciona, é escalável e segura;**
 
-#### A documentação completa das rotas está no arquivo [Desafio 3 - Projeto Integrador.postman_collection](Desafio%203%20-%20Projeto%20Integrador.postman_collection.json)
-
+- #### A documentação completa das rotas está no arquivo [Desafio 3 - Projeto Integrador.postman_collection](Desafio%203%20-%20Projeto%20Integrador.postman_collection.json)
+- #### [User Story](https://github.com/BelAlbuquerque/Projeto_Final/files/9358987/User.Story.docx.pdf)
